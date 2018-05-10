@@ -9,7 +9,7 @@ import { default as contract } from 'truffle-contract'
 
 // Import our contract artifacts and turn them into usable abstractions.
 import token_artifacts from '../../build/contracts/PickToken.json'
-import sale_artifacts from '../../build/contracts/Crowdsale.json'
+import sale_artifacts from '../../build/contracts/IconemySale.json'
 
 // MetaCoin is our usable abstraction, which we'll use through the code below.
 var Token = contract(token_artifacts);
@@ -75,6 +75,7 @@ window.App = {
 
   refreshBalance: function() {
     var self = this;
+    var tokens_sold;
 
     var token;
     Token.deployed().then(function(instance) {
@@ -130,6 +131,9 @@ window.App = {
     }).then(function(value) {
       var sold_element = document.getElementById("tokens_sold");
       var text = convertJackToPick(value) + " " + symbol;
+
+      tokens_sold = convertJackToPick(value);
+
       sold_element.innerHTML = text;
       return sale.owner({from: account});
     }).then(function(_owner) {
@@ -141,20 +145,25 @@ window.App = {
       }
 
       return sale.hardCap({from: account});
-    }).then(function(value) {
-        var goal_element = document.getElementById("sale_goal");
+    }).then(function(value) {       
+        // Sets progress bar
+        console.log(value);
         var progress_element = document.getElementById("sale_progress");
+        var percent = (tokens_sold / convertJackToPick(value)) * 100;
+        progress_element.style.width = percent + '%';
 
+        // Sets goal element
+        var goal_element = document.getElementById("sale_goal");
         goal_element.innerHTML = convertJackToPick(value.valueOf());
     }).catch(function(e) {
       var error = e.toString();
-      if(error.includes('sale.hardCap is not a function')){
-        var goal_element = document.getElementById("sale_goal");
-        var progress_element = document.getElementById("sale_progress");
 
-        goal_element.innerHTML = "UNLIMITED";
-        progress_element.style.display = 'none';
-      }
+      var goal_element = document.getElementById("sale_goal");
+      var progress_element = document.getElementById("sale_progress");
+
+      goal_element.innerHTML = "UNLIMITED";
+      progress_element.style.display = 'none';
+
       console.log(e);
       self.setStatus("Error getting balance; see log.");
     });
@@ -277,24 +286,9 @@ function convertPickToJack(pick){
   return jacks;
 }
 
-$("#buy_btn").click(function() {
-  console.log('called');
-});
-
-$("#token_amount").keyup(function() {
-  console.log('called');
-    $(this).val(parseInt($(this).val()));
-
-    var tokens = document.getElementById("token_amount").value;
-    var eth = document.getElementById("ether_amount"); 
-    eth.value = parseFloat(tokens * tok_price);
-});
-
-$("#ether_amount").keyup(function() {
-    var eth = document.getElementById("ether_amount").value;
-    var tokens = document.getElementById("token_amount"); 
-    tokens.value = parseFloat(eth / tok_price);
-});
+function changeProgress(hardCap, tokensSold){
+  $('#sale_progress').attr('aria-valuenow', '100');
+}
 
 function copyTextToClipboard(text) {
   var textArea = document.createElement("textarea");
@@ -337,6 +331,40 @@ function copyTextToClipboard(text) {
 
   document.body.removeChild(textArea);
 }
+
+$(document).ready(function(){
+    $("#token_amount").keyup(function() {
+        var tokens = document.getElementById("token_amount").value;
+        var eth = document.getElementById("ether_amount"); 
+        eth.value = parseFloat(tokens * tok_price);
+    });
+
+    $("#ether_amount").keyup(function() {
+        var eth = document.getElementById("ether_amount").value;
+        var tokens = document.getElementById("token_amount"); 
+        tokens.value = parseFloat(eth / tok_price);
+    });
+
+    $("#softCapCheck").change(function() {
+      var section = document.getElementById('softCapSection');
+      
+      if(this.checked) {
+          section.style.display = 'block';
+      } else {
+          section.style.display = 'none';
+      }
+    });
+
+    $("#hardCapCheck").change(function() {
+      var section = document.getElementById('hardCapSection');
+      
+      if(this.checked) {
+          section.style.display = 'block';
+      } else {
+          section.style.display = 'none';
+      }
+    });
+});
 
 window.addEventListener('load', function() {
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)

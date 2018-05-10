@@ -7,8 +7,6 @@ try {
 		`
 			rm -r -f build
             cp -r ../build_folders/` + build_name + ` build
-            mv app/index.html app/create.html
-            mv app/run.html app/index.html
             npm run dev
         `,
 	    function(err, data, stderr){

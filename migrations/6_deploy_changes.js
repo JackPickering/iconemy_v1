@@ -1,4 +1,4 @@
-var Crowdsale = artifacts.require("Crowdsale");
+var Crowdsale = artifacts.require("IconemySale");
 var PickToken = artifacts.require("PickToken");
 
 module.exports = async function(deployer, network, accounts) {

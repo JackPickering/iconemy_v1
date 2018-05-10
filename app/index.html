@@ -40,43 +40,144 @@
 </nav>
 
 <div class="jumbotron">
-  <h1 class="display-3" id="token_name">Create your own crowdsale</h1>
+  <h1 class="display-3" id="token_name">Pick token</h1>
   <h4>The future of cryptography</h4>
-  <hr class="my-4">
   <p class="lead">This is a simple explanation of what the crowdsale will do and why you should invest. </p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
 </div>
 
 <div class="container">
   <div class="row">
+    <div class="col-sm-6 col-lg-4">
+      <div class="card text-white bg-primary mb-3">
+        <div class="card-header">Tokens sold</div>
+          <div class="card-body">
+            <h2 class="card-title" id="tokens_sold">-</h2>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-4">
+     <div class="card bg-secondary mb-3">
+       <div class="card-header">Sale goal</div>
+         <div class="card-body">
+          <h2 class="card-title" id="sale_goal">-</h2>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" id="sale_progress" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%; border-width: 1px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-lg-4">
+     <div class="card text-white bg-primary mb-3">
+      <div class="card-header">Current Price</div>
+        <div class="card-body">
+          <h2 class="card-title" id="token_price">- ETH</h2>
+        </div>
+     </div>
+    </div>
+  </div>
+  <div class="row" style="padding-bottom: 100px; padding-top: 50px;">
     <div class="col-1"></div>
     <div class="col-10">
-      <h1>Choose your token</h1>
-      <label for="token_name">Token name:</label><input type="text" id="token_name" placeholder="e.g. Jacks Token"></input>
-      <label for="token_symbol">Token symbol:</label><input type="text" id="token_symbol" placeholder="e.g. JTK"></input>
-      <label for="token_decimal">Decimal places:</label><input type="number" id="token_decimal" placeholder="e.g. 5"></input>
-      <label for="build_name">Name of folder:</label><input type="text" id="build_name" placeholder="e.g. Jacks_Sale"></input>
+      <h1 style="padding-bottom: 10px;">Information</h1>
+      <h4>Started: <span id="start_date" class="text-muted"></span></h4>
+      <h4 style="padding-bottom: 10px;">Ends: <span id="end_date" class="text-muted"></span></h4>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#product">Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#team">Team</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#wp">Whitepaper</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#media">Media</a>
+        </li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade show active" id="product">
+          <p>something about product</p>
+        </div>
+        <div class="tab-pane fade" id="team">
+          <p>Something about team</p>
+        </div>
+        <div class="tab-pane fade" id="wp">
+          <p>something about wp</p>
+        </div>
+        <div class="tab-pane fade" id="media">
+          <p>Something for media</p>
+        </div>
+      </div>
     </div>
     <div class="col-1"></div>
+  </div>
+  <div class="row" id="balance_row">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <div class="card text-white bg-dark mb-3">
+        <div class="card-header">Your current balance</div>
+        <div class="card-body">
+          <h4 class="card-title" id="balance"></h4>
+          </div>
+        </div>
+        <div class="col-1"></div>
+      </div>
+  </div>
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col-10">
+    <div class="card text-white bg-dark mb-3">
+    <div class="card-header">Buy now</div>
+    <div class="card-body">
+      <h4 class="card-title">Buy using MetaMask</h4>
+        <div class="form-group">
+          <label class="control-label">Amount of tokens</label>
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <input type="number" class="form-control" id="token_amount">
+              <div class="input-group-append">
+                <span class="input-group-text"> <span id="tok_symbol">PCK</span></span>
+              </div>
+            </div>
+          </div>
+          <label class="control-label">Amount of ETH</label>
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <input type="number" class="form-control" id="ether_amount">
+              <div class="input-group-append">
+                <span class="input-group-text"> ETH</span>
+              </div>
+            </div>
+          </div>
+          <button type="button" style="width: 100%" class="btn btn-outline-success" id="buy_btn" onclick="App.buyCoin()">Buy now</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-1"></div>
+  </div>
+</div>
+  <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <div class="card text-white bg-dark mb-3" id="admin_row" style="display: none;">
+        <div class="card-header">Withdraw now</div>
+        <div class="card-body">
+          <button type="button" style="width: 100%" class="btn btn-outline-success" id="withdraw_btn" onclick="App.withdraw()">Withdraw</button>
+          <h4 class="card-title" id="balance"></h4>
+        </div>
+        </div>
+        <div class="col-1"></div>
+      </div>
   </div>
   <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
-      <h1>Choose your sale</h1>
-      <label for="start_time">Start time:</label><input type="datetime-local" id="start_time"></input>
-      <label for="end_time">End time:</label><input type="datetime-local" id="end_time"></input>
-      <label for="token_price">Token Price (ETH):</label><input type="number" id="token_price" placeholder="e.g. 0.0015 ETH"></input>
-      <label for="owner_address">Owner address:</label><input type="text" id="owner_address" placeholder="e.g. 0xCB91eD6f481cEDFC9bDCfC29D6A78DfF123e5467"></input>
-      <label for="beneficiary_address">Beneficiary address:</label><input type="text" id="beneficiary_address" placeholder="e.g. 0xCB91eD6f481cEDFC9bDCfC29D6A78DfF123e5467"></input>
-    </div>
-    <div class="col-1"></div>
-  </div>
-  <div class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
-      <button id="send" onclick="App.outputCommand()">Output</button>
-      <p id="command"></p>
-      <span id="status"></span>
-      <span class="hint"><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span>
+        <span id="status"></span>
+        <br>
+        <span class="hint"><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span>
     </div>
     <div class="col-1"></div>
   </div>

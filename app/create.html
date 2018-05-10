@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Picks crowdsale</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <script src="./app.js"></script>
+
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" type='text/css' href="app/stylesheets/variables.scss">
+  <link rel="stylesheet" type='text/css' href="app/stylesheets/bootswatch.scss">
+  <link rel="stylesheet" type='text/css' href="app/stylesheets/bootstrap.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#" style="padding-left:2%;">ICO<span class="text-muted">NEMY</span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+<div class="jumbotron">
+  <h1 class="display-3" id="title">Create your own crowdsale</h1>
+  <h4>The future of cryptography</h4>
+  <hr class="my-4">
+  <p class="lead">This is a simple explanation of what the crowdsale will do and why you should invest. </p>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <h1>Choose your token</h1>
+      <div class="form-group">
+        <label class="col-form-label" for="token_name">Token name:</label>
+        <input type="text" class="form-control" placeholder="e.g. Jacks Token" id="token_name">
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" for="token_symbol">Token symbol:</label>
+        <input type="text" class="form-control" placeholder="e.g. JTK" id="token_symbol">
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" for="token_decimal">Decimal places:</label>
+        <input type="number" class="form-control" placeholder="e.g. 5" id="token_decimal">
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" for="build_name">Name of folder:</label>
+        <input type="text" class="form-control" placeholder="e.g. Jacks_Sale" id="build_name">
+      </div>
+    </div>
+    <div class="col-1"></div>
+  </div>
+  <hr class="my-4">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <h1>Choose your sale</h1>
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="softCapCheck" >
+          <label class="custom-control-label" for="softCapCheck" style="width: 100%">Is there a goal for tokens sold?</label>
+        </div>
+      </div>
+      <div class="form-group" style="display: none;" id="softCapSection">
+        <label class="col-form-label" for="soft_cap" style="width: 100%;">Soft cap amount (in tokens)</label>
+        <input type="number" class="form-control" placeholder="e.g. 5000" id="soft_cap">
+      </div>
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="hardCapCheck">
+          <label class="custom-control-label" for="hardCapCheck" style="width: 100%">Is there a limit for tokens sold?</label>
+        </div>
+      </div>
+      <div class="form-group" style="display: none;"  id="hardCapSection">
+        <label class="col-form-label" for="hard_cap" style="width: 100%;">Hard cap amount (in tokens)</label>
+        <input type="number" class="form-control" placeholder="e.g. 50000" id="hard_cap">
+      </div>
+      <hr class="my-4" style="width: 90%">
+      <div class="form-group">
+        <label class="col-form-label" for="start_time">Start time:</label>
+        <input type="datetime-local" class="form-control" id="start_time">
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" for="end_time">End time:</label>
+        <input type="datetime-local" class="form-control" id="end_time">
+      </div>
+      <hr class="my-4" style="width: 90%">
+      <div class="form-group">
+        <label class="control-label" for="token_price">Token Price (ETH)</label>
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <input type="number" class="form-control" aria-label="Price" id="token_price">
+            <div class="input-group-append">
+              <span class="input-group-text">ETH</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4" style="width: 90%">
+      <div class="form-group">
+        <label class="col-form-label" for="owner_address">Owner address:</label>
+        <input type="text" class="form-control" placeholder="e.g. 0xCB91eD6f481cEDFC9bDCfC29D6A78DfF123e5467" id="owner_address">
+      </div>
+      <div class="form-group">
+        <label class="col-form-label" for="beneficiary_address">Beneficiary address:</label>
+        <input type="text" class="form-control" placeholder="e.g. 0xCB91eD6f481cEDFC9bDCfC29D6A78DfF123e5467" id="beneficiary_address">
+      </div>
+      <hr class="my-4" style="width: 90%">
+    </div>
+    <div class="col-1"></div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <button type="button" style="width: 100%" class="btn btn-outline-success" id="create_btn" onclick="App.outputCommand()">Create</button>
+      <span id="status"></span>
+    </div>
+    <div class="col-1"></div>
+  </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <div class="card border-primary mb-3" style="width: 100%; display: none;" id="command_box">
+        <div class="card-header">Creation command</div>
+        <div class="card-body">
+          <h4 class="card-title">Copy this</h4>
+          <p class="card-text" id="command_text"></p>
+          <button type="button" style="width: 100%" class="btn btn-outline-primary" id="copy_btn" onclick="App.copyCommand()">Copy</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-1"></div>
+  </div>
+</div>
+
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
